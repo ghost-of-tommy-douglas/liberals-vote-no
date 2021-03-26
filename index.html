@@ -1,0 +1,320 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+<script src="http://www.skulpt.org/js/skulpt.min.js" type="text/javascript"></script>
+<script src="http://www.skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-light-grey">
+<div class="w3-content" style="max-width:900px">
+<script type="text/javascript">
+// output functions are configurable.  This one just appends some text
+// to a pre element.
+function outf(text) {
+    var mypre = document.getElementById("output");
+    mypre.innerHTML = mypre.innerHTML + text;
+}
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+            throw "File not found: '" + x + "'";
+    return Sk.builtinFiles["files"][x];
+}
+
+// Here's everything you need to run a python program in skulpt
+// grab the code from your textarea
+// get a reference to your pre element for output
+// configure the output function
+// call Sk.importMainWithBody()
+function runit() {
+   var prog = document.getElementById("yourcode").value;
+   var mypre = document.getElementById("output");
+   mypre.innerHTML = '';
+   Sk.pre = "output";
+   Sk.configure({output:outf, read:builtinRead});
+   (Sk.TurtleGraphics || (Sk.TurtleGraphics = {})).target = 'mycanvas';
+   var myPromise = Sk.misceval.asyncToPromise(function() {
+       return Sk.importMainWithBody("<stdin>", false, prog, true);
+   });
+   myPromise.then(function(mod) {
+       console.log('success');
+   },
+       function(err) {
+       console.log(err.toString());
+   });
+}
+</script>
+<header class="w3-container w3-center w3-padding-32">
+    <h1>Liberals <span class="w3-tag">Vote No</span></h1>
+    <button type="button" class="w3-button w3-padding-large w3-white w3-border" onclick="runit()">Generate new random issue for liberals to vote against</button>
+</header>
+<div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+        <div id="output"></div></div>
+<!-- If you want turtle graphics include a canvas -->
+<div id="mycanvas"></div>
+<form>
+<textarea id="yourcode" cols="40" rows="10" style="display: none;">
+    # This is a sample Python script.
+
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+import random
+
+keywords = {
+    "issues": [{"category": "labour", "text": "$15 minimum wage"},
+               {"category": "labour", "text": "paid sick days"},
+               {"category": "labour", "text": "any form of dignity for working people"},
+               {"category": "long-term care", "text": "taking profit out of long-term care"},
+               {"category": "long-term care", "text": "a bill of rights for long-term care residents"},
+               {"category": "pharmacare", "text": "pharmacare"},
+               {"category": "dental care", "text": "dentalcare"},
+               {"category": "taxation", "text": "taxing the rich"},
+               {"category": "climate", "text": "a green new deal"},
+               {"category": "climate","text": "dropping a large chunk of ice into the ocean as a desperate measure to prevent global warming"},
+               {"category": "climate", "text": "reducing emissions in any way whatsoever"},
+               {"category": "students", "text": "student loan forgiveness"},
+               {"category": "students", "text": "increasing federal funding to universities"},
+               {"category": "students", "text": "converting student loans into grants"}],
+
+    "opening":[{"category":"all", "text":"'Do they actually mean what they say? They've promised this for years, they promised it in the last campaign, they talked about it in the throne speech,' Singh told a press conference Wednesday called to discuss"},
+               {"category":"all", "text":"NDP House Leader Peter Julian slammed the Liberal government Friday, after"},
+               {"category":"climate", "text":"The ambassador from the Penguin Republic of Antartica claimed 'ultimate betrayal' after"},
+               {"category":"all", "text":"'I am disappointed but not surprised,' NDP MP Mumilaaq Qaqqaq said Sunday after"},
+               {"category":"all", "text":"NDP MP Leah Gazan was 'appalled' with Liberal House Leader Pablo Rodrîguez after NDP"},
+               {"category":"all", "text":"Seismic readings show that Tommy Douglas rolled over in his grave today after"},
+               {"category":"all", "text":"NDP MP Heather McPherson declared the Liberals 'out of control' as"},
+               {"category":"all", "text":"Protestors descended on parliament hill today, as"},
+               {"category":"all", "text":"Matthew Green, NDP MP for Hamilton Centre, blasted Christina Freeland for 'failing Canadians' when"}],
+
+    "defeated":[{"category":"all", "text":"defeated on second reading"},
+             {"category":"all", "text":"defeated on third reading"},
+             {"category":"all", "text":"declared out of order"},
+             {"category":"all", "text":"stolen in a daring heist led by Minister of Veterans Affairs Lawrence MacAulay"},
+             {"category":"all", "text":"mistaken for Indigenous land and seized off of the House Floor by Minister of Indigenous Services Marc Miller"},
+             {"category":"all", "text":"accidentally switched with evidence of police wrongdoing and incinerated by the RCMP"},
+             {"category":"all", "text":"slowly fed into a paper shredder on the House Floor, in a show of force by Chief Government Whip Mark Holland"},
+             {"category":"all", "text":"crumpled up and swallowed by a member of the Liberal Caucus before it could be voted on"},
+             {"category":"all", "text":"which was nuked from orbit"},
+             {"category":"all", "text":"reduced to atoms in a dazzling display by Minister of Innovation, Science, and Industry François-Philippe Champagne"},
+             {"category":"all", "text":"erroneously confused with a migrant worker expressing concerns about workplace safety and deported by Minister of Foreign Affairs Marc Garneau"},
+             {"category":"all", "text":"accidentally identified as a deadly weapon and immediately sold to Saudi Arabia by Minister of International Trade Mary Ng"},
+
+                ],
+
+    "bill_number":[
+        {"category":"all", "text":"C-420"},
+        {"category":"all", "text":"C-12345"},
+        {"category":"all", "text":"C-215"},
+        {"category":"all", "text":"C-42"},
+        {"category":"all", "text":"C-543"},
+    ],
+
+    "bill_context": [
+        {"category": "all", "text": "despite overwhelming public support"},
+        {"category": "all", "text": "despite polling showing most canadians in favour"},
+        {"category": "all", "text": "despite endorsements from 60 Canadian municipalities"},
+        {"category": "all", "text": "despite a public poll showing almost all canadians in favour"},
+        {"category": "all", "text": "despite broad support from the labour movement, public"},
+        {"category": "all", "text": "despite intense pressure from young activists"},
+        {"category": "all", "text": "amid flurry of lobbying by special interest groups"},
+        {"category": ["labour","taxation"], "text": "| Walmart CEO declares 'overwhelming' victory in leaked video with shareholders"},
+        {"category": "climate", "text": "with the help of a strong public relations campaign from fossil fuels companies"},
+        {"category": "climate", "text": "despite ignoring dire warnings from frazzled scientist"},
+    ],
+
+    "bill_name": [
+        {"category": ["pharmacare", "dental care"], "text": "Essential Healthcare Service Expansion Act"},
+        {"category": "dental care", "text": "Teeth Shouldn't Be Luxury Bones Act"},
+        {"category": "long-term care", "text": "Dignity for Long-Term Care Residents Act"},
+        {"category": "long-term care", "text": "Dignity for our Elders Act"},
+        {"category": "labour", "text": "Bare Minimum Labour Reform Act"},
+        {"category": "labour", "text": "Stop Treating Your Workers Like Garbage Act"},
+        {"category": "labour", "text": "Worker's Bill of Rights"},
+        {"category": "climate", "text": "Greenhouse Gas Elimination Act"},
+        {"category": "climate", "text": "Environmental Protection Act"},
+        {"category": "climate", "text": "Protect the Penguins Act"},
+        {"category": "taxation", "text": "Yeet the Rich Act"},
+        {"category": "taxation", "text": "Close Offshore Tax Loopholes Act"},
+        {"category": "taxation", "text": "Billionaires Begone Act"},
+        {"category": "students", "text": "Young People Deserve Better Act"},
+        {"category": "students", "text": "Making Higher Education a Right Act"},
+    ],
+
+    "minister": [{"category":"labour", "text":"Minister of Labour Filomena Tassi"},
+                 {"category":["pharmacare", "dental care", "long-term care"], "text":"Minister of Health Patty Hajdu"},
+                 {"category":"taxation", "text":"Minister of National Revenue Diane Lebouthillier"},
+                 {"category":"climate", "text":"Minister of Environment and Climate Change Jonathan Wilkinson"},
+                 {"category":"students", "text":"Minister of Diversity and Inclusion and Youth Bardish Chagger"}],
+
+    "despite": [{"category":"labour", "text":"millions of workers fall under federal jurisdiction"},
+                {"category":"labour", "text":"workers in many key sectors, such as banking, radio and TV broadcasting, inland and maritime navigation and shipping, inland fishing, as well as any form of transportation that crosses provincial boundaries fall under federal jurisdiction"},
+                {"category":["pharmacare", "dental care"], "text":"the federal government has the power to influence provincial healthcare policy through transfer payments"},
+                {"category":"pharmacare", "text":"Trudeau's own committee recommended a federal framework for pharmacare"},
+                {"category":"dentalcare", "text":"dental care is healthcare, and minimum standards for other forms of healthcare are already set by the federal government"},
+                {"category":"taxation", "text":"the federal government has the power to tax canadians as much as they would like to"},
+                {"category":"climate", "text":"the federal government has many areas of exclusive jurisdiction over the environment"},
+                {"category":"climate", "text":"the federal government has the ability to sidestep provinces to fund specific initiatives (like free municipal public transit) directly"},
+                {"category":"long-term care", "text":"a federal agency owns Revera, one of the largest for-profit long-term care providers in Canada"},
+                {"category": "long-term-care","text": "minimum standards for other forms of healthcare (like emergency healthcare) are already set by the federal government"},
+                {"category": "students","text": "the federal government administers federal student loans programs and directly provides funding to provinces for education"}],
+
+
+    "domain_expert": [{"category":"labour", "text": "Ken Neumann, national director of United Steelworkers"},
+                {"category":"labour", "text": "A spokesperson from the Canadian Labour Congress"},
+                {"category":"labour", "text": "Several figures from the labour movement and civil society, in a joint letter,"},
+                {"category":["pharmacare", "dental care", "long-term care"], "text": "Linda Silas, president of the Canadian Federation of Nurses Unions"},
+                {"category":["pharmacare", "long-term care"], "text": "A constitutional expert"},
+                {"category":["pharmacare", "dental care", "long-term care"], "text":"A former provincial Minister of Health"},
+                {"category":"pharmacare", "text": "A representative from Canadian Doctors for Medicare"},
+                {"category":"taxation", "text":"Toby Sanger, executive director of Canadians for tax fairness"},
+                {"category":"taxation", "text": "A traitorous billionaire"},
+                {"category":"taxation", "text": "An economist for CUPE"},
+                {"category":"taxation", "text":"A former provincial Finance Minister"},
+                {"category":"climate", "text":"A spokesperson for 350 Canada"},
+                {"category":"climate", "text":"A frazzled scientist"},
+                {"category":"climate", "text":"A former provincial Minister of the Environment"},
+                {"category":"students", "text":"A spokesperson from the Canadian Federation of Students"},
+                {"category":"students", "text":"A spokesperson from the Canadian Alliance of Student Associations"},
+                {"category": "students", "text": "A former provincial Minister of Education"},],
+
+    "when_challenged": [
+        {"category": "all", "text": "When asked about whether or not"},
+        {"category": "all", "text": "Upon being asked about claims that"},
+        {"category": "all", "text": "When challenged with"},
+        {"category": "all", "text": "When confronted with an angry mob chanting that"},
+    ],
+
+    "reaction": [
+        {"category": "all", "text": "smiled"},
+        {"category": "all", "text": "yawned"},
+        {"category": "all", "text": "attempted to hide behind the podium. When discovered, they shrugged"},
+        {"category": "all", "text": "removed the last shred of decency from their soul"},
+
+    ],
+    "jurisdiction_bullshit": [
+        {"category": "all", "text": "Everyone must respect provincial jurisdiction"},
+        {"category": "all", "text": "Meaningful action from the federal government is impossible"},
+        {"category": "all", "text": "Better things simply aren't possible"},
+        {"category": "all", "text": "We tried nothing, and we're all out of ideas"},
+        {"category": "all", "text": "Our hands are tied"},
+        {"category": "all", "text": "What are you gonna do about it, HUH?"},
+    ],
+    "silly_suggestion": [
+        {"category": "all", "text": "stop playing partisan games"},
+        {"category": "all", "text": "consider lowering their expectations for anything to happen, ever"},
+        {"category": "all", "text": "do a boutique tax cut, instead"},
+        {"category": "all", "text": "chill out and hang out with lobbyists"},
+        {"category": "all", "text": "take a page out of our book, and fearmonger about Conservatives instead of implementing meaningful policy"},
+    ],
+
+    "half_measure": [
+        {"category": "labour", "text": "giving front-line workers a free 'great job!' sticker"},
+        {"category": "labour", "text": "making every worker 'employee of the month' for the month of July"},
+        {"category": "climate", "text": "requiring pipelines to be spray-painted green for eco-friendliness"},
+        {"category": "climate", "text": "buying additional pipelines"},
+        {"category": "climate", "text": "running some facebook ads on the merits of recycling"},
+        {"category": "pharmacare", "text": "continuing running studies on pharmacare until Canadians forget about it"},
+        {"category": "pharmacare", "text": "providing universal coverage for placebos"},
+        {"category": "long-term care", "text": "giving money to for-profit operators who proceeded to immediately pay it out in dividends"},
+        {"category": "dental care", "text": "giving middle-class Canadians a tax credit for every tooth they lose"},
+        {"category": "dental care", "text": "making sure dentists 'let folks down easy' when they realize they can't afford essential medical work"},
+        {"category": "taxation", "text": "giving the Canada Revenue Agency the power to ask billionaires nicely for their tax-shelter money back"},
+        {"category": "taxation", "text": "passing around the hat at a Liberal fundraiser with billionaires to increase government revenue"},
+        {"category": "students", "text": "give students priority access to payday loans to cover their student loan payments"},
+        {"category": "students", "text": "provide a free 'hang in there' sticker to students for every $5000 of student debt paid off"},
+
+    ],
+    "dismissal" : [
+        {"category": "all", "text": "ridiculous"},
+        {"category": "all", "text": "silly"},
+        {"category": "all", "text": "smokescreen"},
+        {"category": "all", "text": "partisan hackery"},
+        {"category": "all", "text": "cynical"},
+    ],
+
+    "jurisdiction_excuse": [
+        {"category": "pharmacare", "text": "they may have promised this for over 20 years, but on further reflection it's actually just not possible"},
+        {"category": ["pharmacare", "dentalcare"], "text": ", while they support the spirit of the bill, the federal government needs to negotiate with provinces first, despite those same MPs being part of the governing party that has made no attempt to negotiate with provinces on this issue"},
+        {"category": "all", "text": "these ideas are simply to pie-in-the-sky to ever work"},
+        {"category": "all", "text": "helping people with this policy would be akin to dictatorship"},
+    ]
+}
+def generate(**kwargs):
+    script = {
+            "headline": "Federal Liberals vote against {issue}, citing provincial jurisdiction".format(issue=kwargs['issue']),
+            "subheadline": "The NDP's proposed {bill_name} was defeated {bill_context}".format(**kwargs),
+            "body": "<p>{opening} Bill {bill_number}, the {bill_name}, was {defeated}. Liberal MPs justified their opposition to Bill {bill_number}, saying that {jurisdiction_excuse}.</p>"
+                     "<p>{domain_expert} dismissed Liberal jurisdictional concerns as '{dismissal}', stating 'while provinces have some authority over {issue}, {despite}. It is clear that immediate federal action on this issue is possible.'"
+                     "\n'In addition, the parliamentary budget officer has indicated Canadian provinces and territories already pay billions of dollars for far worse solutions that are partial, and often full of holes,' they said to reporters.</p>"
+                     "\n<p>{minister} voted against the bill, saying that 'We've made such amazing progress on {issue}. You can tell we are serious, as we've taken the step of {half_measure}. "
+                     "{when_challenged} '{despite}', {minister_lastname} {reaction} and said '{jurisdiction_bullshit}' and that the NDP needs to '{silly_suggestion}.'"
+                     "{minister_lastname} did not comment on questions about when they would bring forward a bill of their own to fully implement their vision.</p>"
+                     "\n<p>However, the Liberals promised to strike another committee to study the issue.</p>".format(**kwargs)
+        }
+    return script
+
+class Article():
+    def __init__(self):
+        issue = self._pick_issue()
+        self.issue = issue['text']
+        self.issue_category = issue['category']
+
+        minister = self._generate_section('minister')
+        minister_lastname = minister.split(" ")[-1]
+        article = generate(issue=self.issue,
+                        issue_category=self.issue_category,
+                        minister = minister,
+                        minister_lastname = minister_lastname,
+                        despite = self._generate_section('despite'),
+                        domain_expert=self._generate_section('domain_expert'),
+                        opening=self._generate_section('opening'),
+                        bill_number=self._generate_section('bill_number'),
+                        bill_name=self._generate_section('bill_name'),
+                        defeated = self._generate_section('defeated'),
+                        when_challenged=self._generate_section('when_challenged'),
+                        silly_suggestion=self._generate_section('silly_suggestion'),
+                        reaction=self._generate_section('reaction'),
+                        jurisdiction_bullshit=self._generate_section('jurisdiction_bullshit'),
+                        half_measure=self._generate_section('half_measure'),
+                        dismissal=self._generate_section('dismissal'),
+                        bill_context=self._generate_section('bill_context'),
+                        jurisdiction_excuse=self._generate_section('jurisdiction_excuse'),
+                                  )
+        print("<h1><b>"+article['headline']+"</b></h1>")
+        print("<h2>"+article['subheadline']+"</h2>")
+        print(article['body'])
+
+    def _pick_issue(self):
+        issue_index = random.randrange(0, len(keywords["issues"]))
+        return keywords["issues"][issue_index]
+
+    def _generate_section(self, article_section):
+        valid_sections = []
+        for section in keywords[article_section]:
+            if (type(section['category']) == str and \
+                    (section['category'] == self.issue_category or section['category'] == 'all')) \
+                or (type(section['category']) == list and self.issue_category in section['category']):
+                valid_sections.append(section)
+
+
+        section_index = random.randrange(0, len(valid_sections))
+        return valid_sections[section_index]['text']
+
+
+
+art = Article()
+</textarea>
+</form>
+</div>
+</div>
+</div>
+</body>
+
+</html>
