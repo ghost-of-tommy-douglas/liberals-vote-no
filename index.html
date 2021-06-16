@@ -1,8 +1,8 @@
 <html>
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
-<script src="http://www.skulpt.org/js/skulpt.min.js" type="text/javascript"></script>
-<script src="http://www.skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js" type="text/javascript"></script>
+<script src="https://skulpt.org/js/skulpt.min.js" type="text/javascript"></script>
+<script src="https://skulpt.org/js/skulpt-stdlib.js" type="text/javascript"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -76,6 +76,7 @@ keywords = {
                {"category": "pharmacare", "text": "pharmacare"},
                {"category": "dental care", "text": "dentalcare"},
                {"category": "taxation", "text": "taxing the rich"},
+               {"category": "taxation", "text": "taxing pandemic profiteers"},
                {"category": "climate", "text": "a green new deal"},
                {"category": "climate","text": "dropping a large chunk of ice into the ocean as a desperate measure to prevent global warming"},
                {"category": "climate", "text": "reducing emissions in any way whatsoever"},
@@ -101,7 +102,7 @@ keywords = {
              {"category":"all", "text":"accidentally switched with evidence of police wrongdoing and incinerated by the RCMP"},
              {"category":"all", "text":"slowly fed into a paper shredder on the House Floor, in a show of force by Chief Government Whip Mark Holland"},
              {"category":"all", "text":"crumpled up and swallowed by a member of the Liberal Caucus before it could be voted on"},
-             {"category":"all", "text":"which was nuked from orbit"},
+             {"category":"all", "text":"was nuked from orbit"},
              {"category":"all", "text":"reduced to atoms in a dazzling display by Minister of Innovation, Science, and Industry François-Philippe Champagne"},
              {"category":"all", "text":"erroneously confused with a migrant worker expressing concerns about workplace safety and deported by Minister of Foreign Affairs Marc Garneau"},
              {"category":"all", "text":"accidentally identified as a deadly weapon and immediately sold to Saudi Arabia by Minister of International Trade Mary Ng"},
@@ -125,6 +126,7 @@ keywords = {
         {"category": "all", "text": "despite intense pressure from young activists"},
         {"category": "all", "text": "amid flurry of lobbying by special interest groups"},
         {"category": ["labour","taxation"], "text": "| Walmart CEO declares 'overwhelming' victory in leaked video with shareholders"},
+        {"category": ["labour","taxation"], "text": "| Jeff Bezos 'cackles maniacally' after hearing news"},
         {"category": "climate", "text": "with the help of a strong public relations campaign from fossil fuels companies"},
         {"category": "climate", "text": "despite ignoring dire warnings from frazzled scientist"},
     ],
@@ -242,7 +244,7 @@ keywords = {
     "jurisdiction_excuse": [
         {"category": "pharmacare", "text": "they may have promised this for over 20 years, but on further reflection it's actually just not possible"},
         {"category": ["pharmacare", "dentalcare"], "text": ", while they support the spirit of the bill, the federal government needs to negotiate with provinces first, despite those same MPs being part of the governing party that has made no attempt to negotiate with provinces on this issue"},
-        {"category": "all", "text": "these ideas are simply to pie-in-the-sky to ever work"},
+        {"category": "all", "text": "these ideas are simply too pie-in-the-sky to ever work"},
         {"category": "all", "text": "helping people with this policy would be akin to dictatorship"},
     ]
 }
@@ -254,7 +256,7 @@ def generate(**kwargs):
                      "<p>{domain_expert} dismissed Liberal jurisdictional concerns as '{dismissal}', stating 'while provinces have some authority over {issue}, {despite}. It is clear that immediate federal action on this issue is possible.'"
                      "\n'In addition, the parliamentary budget officer has indicated Canadian provinces and territories already pay billions of dollars for far worse solutions that are partial, and often full of holes,' they said to reporters.</p>"
                      "\n<p>{minister} voted against the bill, saying that 'We've made such amazing progress on {issue}. You can tell we are serious, as we've taken the step of {half_measure}. "
-                     "{when_challenged} '{despite}', {minister_lastname} {reaction} and said '{jurisdiction_bullshit}' and that the NDP needs to '{silly_suggestion}.'"
+                     "{when_challenged} '{despite}', {minister_lastname} {reaction} and said '{jurisdiction_bullshit}' and that the NDP needs to '{silly_suggestion}.' "
                      "{minister_lastname} did not comment on questions about when they would bring forward a bill of their own to fully implement their vision.</p>"
                      "\n<p>However, the Liberals promised to strike another committee to study the issue.</p>".format(**kwargs)
         }
